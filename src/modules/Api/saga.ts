@@ -12,7 +12,10 @@ const methodsWithBody: HttpMethod[]  = [ 'PATCH', 'PATCH', 'PUT', 'POST', 'DELET
 const fetchSaga = function*(baseUrl: string, action: AnyAction): any {
     const { payload } = action;
     const url = `${baseUrl}/${payload.resource}`;
-    const headers = {} as Headers;
+    const headers = new Headers({
+        'Content-Type': 'application/json',
+        'Accept': 'application/json',
+    });
 
     const init: RequestInit = {
         method: payload.method,
@@ -27,8 +30,8 @@ const fetchSaga = function*(baseUrl: string, action: AnyAction): any {
     try {
         const response = yield call(fetchData, url, init);
         response.ok
-            ? yield put({type: payload.onSuccess, response})
-            : yield put({type: payload.onError, response});
+            ? yield put({type: payload.onSuccess, payload: response.data})
+            : yield put({type: payload.onError, payload: response.data});
     } catch (error) {
         yield put({type: payload.onError, error});
     }

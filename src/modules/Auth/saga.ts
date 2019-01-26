@@ -17,9 +17,9 @@ function* tryLoginLogout(action: any) {
         return yield put(removeToken());
     }
 
-    const token = yield select(hasToken);
-    if (token) {
-        yield put(setToken(token));
+    const userToken = yield select(hasToken);
+    if (userToken) {
+        yield put(setToken(userToken));
     }
 
     yield put(
@@ -36,7 +36,8 @@ function* tryLoginLogout(action: any) {
         error: take(LOGIN_FAILED),
     });
 
-    ok ? yield put(setToken(action.payload)) : yield put(removeToken());
+    const { token } = ok.payload.payload;
+    ok ? yield put(setToken(token)) : yield put(removeToken());
 }
 
 function* tokenSaga() {

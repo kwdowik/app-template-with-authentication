@@ -4,7 +4,7 @@ import { ILoginPayload } from './model';
 export const setToken = (token: string) => ({
     type: SET_TOKEN,
     payload: {
-        data: token,
+        token,
     },
 });
 
