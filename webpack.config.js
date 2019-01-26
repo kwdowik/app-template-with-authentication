@@ -17,7 +17,7 @@ const scssPlugin = new MiniCssExtractPlugin({
 module.exports = (env = {}) => {
     const isDevBuild = !env.production;
     const apiHost = env.apiHost || 'localhost';
-    const apiPort = env.apiPort ? Number(env.apiPort) : 8080;
+    const apiPort = env.apiPort ? Number(env.apiPort) : 3000;
     const apiProtocol = env.apiProtocol || 'http';
 
     const apiUrl = `${apiProtocol}://${apiHost}:${apiPort}/api`;
