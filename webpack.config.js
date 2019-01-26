@@ -1,4 +1,5 @@
 const HtmlWebPackPlugin = require('html-webpack-plugin');
+const webpack = require('webpack');
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 
 const path = require('path');
@@ -44,6 +45,12 @@ module.exports = (env = {}) => {
                 { test: /\.(woff2?|svg|ttf|png)$/, use: 'file-loader', exclude: __dirname + '/src/assets/images' }
             ]
         },
-        plugins: [htmlPlugin, scssPlugin]
+        plugins: [
+            new webpack.DefinePlugin({
+                API_URL: JSON.stringify(apiUrl),
+            }),
+            htmlPlugin,
+            scssPlugin
+        ]
     }]
 };
