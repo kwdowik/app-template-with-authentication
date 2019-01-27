@@ -9,6 +9,11 @@ export const getToken = createSelector(
     (state: IAuthState) => state.token,
 );
 
+export const isInvalidCredentials = createSelector(
+    getAuthState,
+    (state: IAuthState) => state.isError,
+);
+
 export const hasToken = createSelector(
     getToken,
     (token: string | null) => Boolean(token),
