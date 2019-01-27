@@ -1,11 +1,12 @@
 import { IAuthState, reducer } from '../../../modules/Auth';
-import { REMOVE_TOKEN, SET_TOKEN } from '../../../modules/Auth/actionTypes';
+import { LOGIN_FAILED, LOGIN_SUCCEED, REMOVE_TOKEN, SET_TOKEN } from '../../../modules/Auth/actionTypes';
 
 describe('Auth reducers should', () => {
     let fakeAuthState: IAuthState;
 
     beforeEach(() => {
         fakeAuthState = {
+            isError: false,
             isLoggedIn: false,
             token: 'testToken',
         };
@@ -29,7 +30,7 @@ describe('Auth reducers should', () => {
         };
 
         expect(reducer(fakeAuthState, action))
-            .toEqual({...fakeAuthState, token: 'newTestToken', isLoggedIn: true});
+            .toEqual({...fakeAuthState, token: 'newTestToken' });
     });
 
     it('REMOVE_TOKEN', () => {
@@ -38,6 +39,24 @@ describe('Auth reducers should', () => {
         };
 
         expect(reducer(fakeAuthState, action))
-            .toEqual({...fakeAuthState, token: null, isLoggedIn: false});
+            .toEqual({...fakeAuthState, token: null });
+    });
+
+    it('LOGIN_SUCCEED', () => {
+        const action = {
+            type: LOGIN_SUCCEED,
+        };
+
+        expect(reducer(fakeAuthState, action))
+            .toEqual({...fakeAuthState, isError: false, isLoggedIn: true });
+    });
+
+    it('LOGIN_FAILED', () => {
+        const action = {
+            type: LOGIN_FAILED,
+        };
+
+        expect(reducer(fakeAuthState, action))
+            .toEqual({...fakeAuthState, isError: true, isLoggedIn: false });
     });
 });
