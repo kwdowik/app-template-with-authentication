@@ -1,3 +1,15 @@
+import { createSelector } from 'reselect';
+import { IAppState } from '../../model';
 import { IAuthState } from './model';
 
-export const hasToken = (state: IAuthState) => Boolean(state.token);
+const getAuthState = (state: IAppState): IAuthState => state.auth;
+
+export const getToken = createSelector(
+    getAuthState,
+    (state: IAuthState) => state.token,
+);
+
+export const hasToken = createSelector(
+    getToken,
+    (token: string | null) => Boolean(token),
+);
