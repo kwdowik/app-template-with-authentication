@@ -8,7 +8,7 @@ export const rootSaga = function*() {
     yield all([
         // tslint:disable-next-line:no-console
         takeEvery('*', console.log),
-        authSaga(),
+        authSaga.sagaFunc(),
         apiSaga(apiUrl),
     ]);
 };

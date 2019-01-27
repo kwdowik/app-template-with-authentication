@@ -27,7 +27,7 @@ server.listen(3000, () => {
 const authorize = (req, res, next) => {
     if (req.url === '/login' && req.method === 'POST') {
         const body = generateResponse(isValidUser(req));
-        res.send(body);
+        res.send(body.status, body);
     } else {
         next();
     }
