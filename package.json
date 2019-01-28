@@ -20,7 +20,7 @@
     "build": "webpack --mode production --env.production=true",
     "lint": "./node_modules/.bin/tslint 'src/**/*.ts{,x}'",
     "test": "jest",
-    "db": "json-server db.json --routes routes.json"
+    "json-server": "node json-server.js"
   },
   "browserslist": [
     ">0.2%",

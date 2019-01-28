@@ -13,7 +13,7 @@ const methodsWithBody: HttpMethod[]  = [ 'PATCH', 'PATCH', 'PUT', 'POST', 'DELET
 
 const fetchSaga = function*(baseUrl: string, action: AnyAction): any {
     const { payload } = action;
-    const key = payload.key || v1();
+    const key = payload.loadingKey || v1();
     const url = `${baseUrl}/${payload.resource}`;
     const headers = new Headers({
         'Content-Type': 'application/json',
