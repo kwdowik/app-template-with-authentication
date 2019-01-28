@@ -111,7 +111,7 @@ describe('Auth saga should', () => {
                 },
             };
 
-            const tryLoginLogoutGen = tryLoginLogout({ type: LOGIN });
+            const tryLoginLogoutGen = tryLoginLogout({ type: LOGIN, payload: { key: 'testKey' }});
             tryLoginLogoutGen.next();
             tryLoginLogoutGen.next(action);
             tryLoginLogoutGen.next();
@@ -128,6 +128,7 @@ describe('Auth saga should', () => {
                 type: LOGIN,
                 payload: {
                     data: 'testData',
+                    key: 'testKey',
                 },
             };
             const response = {
@@ -139,7 +140,7 @@ describe('Auth saga should', () => {
                     },
                 },
             };
-            const tryLoginLogoutGen = tryLoginLogout({ type: LOGIN });
+            const tryLoginLogoutGen = tryLoginLogout({ type: LOGIN, payload: { key: 'testKey' } });
             tryLoginLogoutGen.next();
             tryLoginLogoutGen.next(action);
             tryLoginLogoutGen.next();
@@ -159,7 +160,7 @@ describe('Auth saga should', () => {
             const response = {
                 ok: null,
             };
-            const tryLoginLogoutGen = tryLoginLogout({ type: LOGIN });
+            const tryLoginLogoutGen = tryLoginLogout({ type: LOGIN, payload: { key: 'testKey' } });
             tryLoginLogoutGen.next();
             tryLoginLogoutGen.next(action);
             tryLoginLogoutGen.next();

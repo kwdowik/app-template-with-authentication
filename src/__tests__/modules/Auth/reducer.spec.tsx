@@ -6,7 +6,6 @@ describe('Auth reducers should', () => {
 
     beforeEach(() => {
         fakeAuthState = {
-            isError: false,
             isLoggedIn: false,
             token: 'testToken',
         };
@@ -48,7 +47,7 @@ describe('Auth reducers should', () => {
         };
 
         expect(reducer(fakeAuthState, action))
-            .toEqual({...fakeAuthState, isError: false, isLoggedIn: true });
+            .toEqual({...fakeAuthState, isLoggedIn: true });
     });
 
     it('LOGIN_FAILED', () => {
@@ -57,6 +56,6 @@ describe('Auth reducers should', () => {
         };
 
         expect(reducer(fakeAuthState, action))
-            .toEqual({...fakeAuthState, isError: true, isLoggedIn: false });
+            .toEqual({...fakeAuthState, isLoggedIn: false });
     });
 });
