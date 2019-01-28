@@ -20,8 +20,7 @@ export interface IPayload {
     onInvoke?: string;
     onSuccess?: string;
     onError?: string;
-    key?: string;
 }
 
 export type HttpRequestData =
-    Pick<IPayload, 'data' | 'loadingKey' | 'resource' | 'onError' | 'onInvoke' | 'onSuccess' | 'key'>;
+    Pick<IPayload, 'data' | 'loadingKey' | 'resource' | 'onError' | 'onInvoke' | 'onSuccess'>;

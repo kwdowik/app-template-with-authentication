@@ -25,11 +25,10 @@ function* tryLoginLogout(action: any) {
     yield put(
         http_request.post({
             data: {...action.payload},
-            loadingKey: 'login',
+            loadingKey: action.payload.key,
             resource: 'auth/login',
             onSuccess: LOGIN_SUCCEED,
             onError: LOGIN_FAILED,
-            key: action.payload.key,
     }, false));
 
     const { ok } = yield race({

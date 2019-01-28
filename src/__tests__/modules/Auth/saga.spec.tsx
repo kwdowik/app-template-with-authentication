@@ -87,6 +87,7 @@ describe('Auth saga should', () => {
                 type: LOGIN,
                 payload: {
                     data: 'testData',
+                    key: 'testKey',
                 },
             };
             const tryLoginLogoutGen = tryLoginLogout(action);
@@ -96,7 +97,7 @@ describe('Auth saga should', () => {
                 .toEqual(put(
                     http_request.post({
                         data: {...action.payload},
-                        loadingKey: 'login',
+                        loadingKey: 'testKey',
                         resource: 'auth/login',
                         onSuccess: LOGIN_SUCCEED,
                         onError: LOGIN_FAILED,
