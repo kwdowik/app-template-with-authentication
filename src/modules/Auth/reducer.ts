@@ -19,13 +19,11 @@ export const reducer: Reducer<IAuthState> = (state: IAuthState = initial, action
         case LOGIN_SUCCEED:
             return {
                 ...state,
-                isError: false,
                 isLoggedIn: true,
             };
         case LOGIN_FAILED:
             return {
                 ...state,
-                isError: true,
                 isLoggedIn: false,
             };
        default:

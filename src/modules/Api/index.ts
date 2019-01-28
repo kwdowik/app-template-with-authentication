@@ -1,3 +1,4 @@
 export { reducer } from './reducer';
-export { IApiState } from './model';
+export { getRequest } from './selectors';
+export { IApiState, IRequestState } from './model';
 export { saga } from './saga';

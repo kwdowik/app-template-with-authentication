@@ -8,6 +8,9 @@ export interface IAppState {
     api: IApiState;
 }
 
+export interface ILoading {
+    key?: string;
+}
 export interface IDictionary<T> {
     [name: string]: T;
 }

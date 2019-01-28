@@ -29,6 +29,7 @@ function* tryLoginLogout(action: any) {
             resource: 'auth/login',
             onSuccess: LOGIN_SUCCEED,
             onError: LOGIN_FAILED,
+            key: action.payload.key,
     }, false));
 
     const { ok } = yield race({
