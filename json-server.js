@@ -35,7 +35,6 @@ const authorize = (req, res, next) => {
 
 const isAuthorized = (req) => {
     const { token } = req.body;
-    console.log('isAuthorized ', req.body);
     return Boolean(token);
 }
 
