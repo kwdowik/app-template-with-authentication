@@ -2,12 +2,14 @@ import { AnyAction } from 'redux';
 import { delay } from 'redux-saga';
 import { call, put, takeEvery } from 'redux-saga/effects';
 import { v1 } from 'uuid';
-import { HttpMethod, IDictionary } from '../../model';
+import { api } from '../../api';
+import { Environment } from '../../constants';
+import { HttpMethod } from '../../model';
 import { ADD_REQUEST, CALL, RESOLVE_REQUEST } from './actionTypes';
 
-export function* saga(url: string) {
+const sagaFunc = function*(url: string) {
     yield takeEvery(CALL, fetchSaga, url);
-}
+};
 
 const methodsWithBody: HttpMethod[]  = [ 'PATCH', 'PATCH', 'PUT', 'POST', 'DELETE' ];
 
@@ -41,6 +43,7 @@ const fetchSaga = function*(baseUrl: string, action: AnyAction): any {
     try {
 
         yield call(delay, 1500);
+        const fetchData = api.fetchData(fetch);
         const response = yield call(fetchData, url, init);
 
         response.ok
@@ -57,29 +60,8 @@ const fetchSaga = function*(baseUrl: string, action: AnyAction): any {
     }
 };
 
-const fetchData = async (url: string, init: RequestInit) => {
-    return fetch(url, init)
-        .then(async (r: Response) => {
-            const headers: IDictionary<string> = {};
-            r.headers.forEach((value: string, key: string) => headers[key] = value);
-            return ({
-                ok: r.ok,
-                data: r.ok
-                ? {
-                    payload: await r.json(),
-                    headers,
-                    code: r.status,
-                }
-                : {
-                    code: r.status,
-                },
-            });
-        })
-        .catch(() => ({
-            ok: false,
-            data: {
-                code: -1,
-                error: 'Error has been occured during fetch data',
-            },
-        }));
-};
+const saga = process.env.NODE_ENV === Environment.TEST
+    ? { sagaFunc, fetchSaga }
+    : { sagaFunc };
+
+export { saga };

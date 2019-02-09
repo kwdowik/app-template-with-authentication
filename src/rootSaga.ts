@@ -9,6 +9,6 @@ export const rootSaga = function*() {
         // tslint:disable-next-line:no-console
         takeEvery('*', console.log),
         authSaga.sagaFunc(),
-        apiSaga(apiUrl),
+        apiSaga.sagaFunc(apiUrl),
     ]);
 };
