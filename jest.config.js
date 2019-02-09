@@ -3,7 +3,7 @@ module.exports = {
         "<rootDir>/src"
       ],
       "globals": {
-        'API_URL': 'API_URL',
+        'API_URL': 'API_URL'
       },
       "transform": {
         "^.+\\.tsx?$": "ts-jest"
