@@ -9,8 +9,8 @@ interface IPrivateRouteProps extends RouteProps {
 
 const PrivateRoute: React.SFC<IPrivateRouteProps> =
     ({isAuth, component: Component, redirectUrl, ...props}: IPrivateRouteProps) => {
-    const render = () => isAuth ? <Component /> : <Redirect to={redirectUrl || '\login'} />;
+    const render = () => isAuth ? <Component /> : <Redirect to={redirectUrl || '\\login'} />;
     return <Route {...props} render={render} />;
 };
 
-export { PrivateRoute };
+export { PrivateRoute, IPrivateRouteProps };
