@@ -1,12 +1,13 @@
 import * as React from 'react';
 
 import { connect } from 'react-redux';
-import { BrowserRouter, Switch } from 'react-router-dom';
+import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import { createStructuredSelector } from 'reselect';
+import App from '../../containers/App';
 import { Home } from '../../containers/Home';
 import Login from '../../containers/Login';
-import { Logout } from '../../containers/Logout';
 import { IAppState } from '../../model';
+import { Logout } from '../../modules/Auth/components/Logout';
 import { isUserAuthorized } from '../selectors';
 import { PrivateRoute } from './PrivateRoute';
 
@@ -18,9 +19,18 @@ const RouterSFC: React.SFC<IRouterProps> = ({ isAuth }: IRouterProps) => {
     return (
         <BrowserRouter>
             <Switch>
-                <PrivateRoute isAuth={isAuth} path="/home" component={Home} />
+                <PrivateRoute isAuth={!isAuth} exact path="/login" component={Login} redirectUrl="/home" />
                 <PrivateRoute isAuth={isAuth} path="/logout" component={Logout} />
-                <PrivateRoute isAuth={!isAuth} path="/" component={Login} redirectUrl="/home" />
+                <Route path="/" render={() => {
+                    return (
+                        <Switch>
+                            <App>
+                                <PrivateRoute isAuth={isAuth} exact path="/:filter?" component={Home} />
+                                <PrivateRoute exact isAuth={isAuth} path="/home" component={Home} />
+                            </App>
+                        </Switch>
+                    );
+                }} />
             </Switch>
         </BrowserRouter>
     );
