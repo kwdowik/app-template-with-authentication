@@ -1,22 +1,24 @@
 import { LOGIN, LOGOUT, REMOVE_TOKEN, SET_TOKEN } from './actionTypes';
 import { ILoginPayload } from './model';
 
-export const setToken = (token: string) => ({
+const setToken = (token: string) => ({
     type: SET_TOKEN,
     payload: {
         token,
     },
 });
 
-export const removeToken = () => ({
+const removeToken = () => ({
     type: REMOVE_TOKEN,
 });
 
-export const login = (data: ILoginPayload) => ({
+const login = (data: ILoginPayload) => ({
     type: LOGIN,
     payload: data,
 });
 
-export const logout = () => ({
+const logout = () => ({
     type: LOGOUT,
 });
+
+export { logout, login, removeToken, setToken };

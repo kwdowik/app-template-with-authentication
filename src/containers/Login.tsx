@@ -12,7 +12,7 @@ import { ILoginPayload } from '../modules/Auth';
 import { Loader } from '../modules/Common';
 
 interface ILoginContainerProps {
-    onLogin: (data: ILoginPayload) => any;
+    login: (data: ILoginPayload) => any;
     token: string | null;
     requestState: IRequestState;
 }
@@ -32,7 +32,7 @@ class LoginContainer extends React.Component<ILoginContainerProps, ILoginContain
     }
 
     public render(): JSX.Element {
-        const { onLogin, requestState } = this.props;
+        const { login: onLogin, requestState } = this.props;
         const { isError, isLoading } =
             Boolean(requestState) ? requestState : {isLoading: false, isError: false};
         const { email, password } = this.state;
@@ -87,10 +87,7 @@ const Login = connect(
       token: getToken(state),
       requestState: getRequest('loginForm')(state),
     }),
-    (dispatch: Dispatch) => bindActionCreators({
-      onLogin: login,
-    },
-    dispatch),
+    (dispatch: Dispatch) => bindActionCreators({ login }, dispatch),
 )(LoginContainer);
 
 export default Login;
