@@ -15,12 +15,12 @@ describe('PrivateRoute component should', () => {
 
     it('redirect to default url when user is unauthorized', () => {
         const wrapper = shallow(<PrivateRoute {...props} />);
-        expect(wrapper.prop('render')()).toEqual(<Redirect to="\login" />);
+        expect(wrapper.prop('render')()).toEqual(<Redirect to="/login" />);
     });
 
     it('redirect to redirectUrl from props when user is unauthorized', () => {
-        const wrapper = shallow(<PrivateRoute {...props} redirectUrl={'\\home'} />);
-        expect(wrapper.prop('render')()).toEqual(<Redirect to="\home" />);
+        const wrapper = shallow(<PrivateRoute {...props} redirectUrl={'/home'} />);
+        expect(wrapper.prop('render')()).toEqual(<Redirect to="/home" />);
     });
 
     it('render component from props when user is authorized', () => {

@@ -20,7 +20,7 @@ const RouterSFC: React.SFC<IRouterProps> = ({ isAuth }: IRouterProps) => {
             <Switch>
                 <PrivateRoute isAuth={isAuth} path="/home" component={Home} />
                 <PrivateRoute isAuth={isAuth} path="/logout" component={Logout} />
-                <PrivateRoute isAuth={!isAuth} path="/:filter?" component={Login} redirectUrl="/home" />
+                <PrivateRoute isAuth={!isAuth} path="/" component={Login} redirectUrl="/home" />
             </Switch>
         </BrowserRouter>
     );
