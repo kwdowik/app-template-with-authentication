@@ -22,7 +22,7 @@ interface ILoginFormProps {
 interface ILoginFormOwnProps {
     email: string;
     password: string;
-    onChange: (key: 'email' | 'password', value: string) => void;
+    onChange: (key: string, value: string) => void;
 }
 
 const LoginFormComponent: React.SFC<ILoginFormProps> =

@@ -17,18 +17,6 @@ class Login extends React.Component<{}, ILoginContainerState> {
         };
     }
 
-    public handleChange(key: 'email' | 'password', value: string) {
-        if  ( key === 'email') {
-            this.setState({
-                email: value,
-            });
-        } else {
-            this.setState({
-                password: value,
-            });
-        }
-    }
-
     public render(): JSX.Element {
         const { email, password } = this.state;
         return (
@@ -39,7 +27,10 @@ class Login extends React.Component<{}, ILoginContainerState> {
                 <LoginForm
                     email={email}
                     password={password}
-                    onChange={(key: 'email' | 'password', value: string) => this.handleChange(key, value)}
+                    onChange={(key: string, value: string) => this.setState((prevState) => ({
+                        ...prevState,
+                        [key]: value,
+                    }))}
                 />
             </Box>
         );
