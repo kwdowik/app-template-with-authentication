@@ -1,6 +1,6 @@
 import * as React from 'react';
 
-import '../../assets/scss/index.scss';
+import '../../../assets/scss/index.scss';
 
 interface ILoaderProps {
     type: 'Circle' | 'Linear';
