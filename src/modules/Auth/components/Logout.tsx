@@ -3,8 +3,8 @@ import * as React from 'react';
 import { Box, Text } from 'grommet';
 import { connect } from 'react-redux';
 import { bindActionCreators, Dispatch } from 'redux';
-import { logout } from '../modules/Auth';
-import { Loader } from '../modules/Common';
+import { logout } from '..';
+import { Loader } from '../../Common';
 
 interface ILogoutProps {
     logout: () => void;
