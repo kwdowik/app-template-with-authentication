@@ -2,12 +2,12 @@ import * as React from 'react';
 import * as ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
 import './assets/scss/index.scss';
-import Login from './containers/Login';
+import { Router } from './routing/Router';
 import { store } from './store';
 
 ReactDOM.render(
     <Provider store={store}>
-        <Login />
+        <Router />
     </Provider>,
     document.getElementById('root'),
 );

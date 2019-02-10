@@ -14,8 +14,8 @@ const scssPlugin = new MiniCssExtractPlugin({
     chunkFilename: '[id].scss'
 })
 
-module.exports = (env = {}) => {
-    const isDevBuild = !env.production;
+module.exports = (env = {}, argv) => {
+    const isDevBuild = argv.mode === 'development';
     const apiHost = env.apiHost || 'localhost';
     const apiPort = env.apiPort ? Number(env.apiPort) : 3000;
     const apiProtocol = env.apiProtocol || 'http';
@@ -26,6 +26,9 @@ module.exports = (env = {}) => {
     console.info(`isDevBuild: ${isDevBuild}`);
 
     return [{
+        devServer: {
+            historyApiFallback: true,
+        },
         entry: './src/index.tsx',
         resolve: { extensions: ['.js', '.jsx', '.ts', '.tsx'] },
         module: {
