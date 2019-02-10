@@ -7,7 +7,6 @@ describe('Auth selectors should', () => {
     beforeEach(() => {
         fakeAppState = {
             auth: {
-                isLoggedIn: false,
                 token: 'testToken',
             },
         } as IAppState;

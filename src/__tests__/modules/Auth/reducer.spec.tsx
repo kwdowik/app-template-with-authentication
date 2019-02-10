@@ -1,12 +1,11 @@
 import { IAuthState, reducer } from '../../../modules/Auth';
-import { LOGIN_FAILED, LOGIN_SUCCEED, REMOVE_TOKEN, SET_TOKEN } from '../../../modules/Auth/actionTypes';
+import { REMOVE_TOKEN, SET_TOKEN } from '../../../modules/Auth/actionTypes';
 
 describe('Auth reducers should', () => {
     let fakeAuthState: IAuthState;
 
     beforeEach(() => {
         fakeAuthState = {
-            isLoggedIn: false,
             token: 'testToken',
         };
     });
@@ -39,23 +38,5 @@ describe('Auth reducers should', () => {
 
         expect(reducer(fakeAuthState, action))
             .toEqual({...fakeAuthState, token: null });
-    });
-
-    it('LOGIN_SUCCEED', () => {
-        const action = {
-            type: LOGIN_SUCCEED,
-        };
-
-        expect(reducer(fakeAuthState, action))
-            .toEqual({...fakeAuthState, isLoggedIn: true });
-    });
-
-    it('LOGIN_FAILED', () => {
-        const action = {
-            type: LOGIN_FAILED,
-        };
-
-        expect(reducer(fakeAuthState, action))
-            .toEqual({...fakeAuthState, isLoggedIn: false });
     });
 });
