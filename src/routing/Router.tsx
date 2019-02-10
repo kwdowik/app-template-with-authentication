@@ -1,7 +1,6 @@
-import * as React from 'React';
+import * as React from 'react';
 
 import { connect } from 'react-redux';
-// tslint:disable-next-line:ordered-imports
 import { BrowserRouter, Switch } from 'react-router-dom';
 import { createStructuredSelector } from 'reselect';
 import { Home } from '../containers/Home';
