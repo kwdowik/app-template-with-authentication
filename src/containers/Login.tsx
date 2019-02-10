@@ -1,7 +1,7 @@
 import * as React from 'react';
 
 import { Box, Heading } from 'grommet';
-import { LoginForm } from '../modules/Auth/components/LoginForm';
+import { LoginForm } from '../modules/Auth';
 
 interface ILoginContainerState {
     email: string;

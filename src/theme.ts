@@ -1,7 +1,7 @@
 const theme = {
     global: {
         colors: {
-          brand: '#2196f3',
+          brand: '#7D4CDB',
         },
         elevation: {
           light: {
@@ -21,12 +21,13 @@ const theme = {
         },
       },
       button: {
-        border: {
-          radius: 0,
-        },
+        color: 'light-2',
         padding: {
           vertical: '6px',
           horizontal: '24px',
+        },
+        border: {
+          color: 'none',
         },
         extend: (props: any) => `
           font-weight: 500;

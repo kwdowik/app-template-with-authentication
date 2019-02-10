@@ -1,6 +1,7 @@
 export { reducer } from './reducer';
-export { IAuthState } from './model';
 export { saga } from './saga';
 export { logout, login, removeToken, setToken } from './actions';
-export { ILoginPayload } from './model';
+export { ILoginPayload, IAuthState } from './model';
 export { hasToken, getToken } from './selectors';
+export { LoginForm } from './components/LoginForm';
+export { Logout } from './components/Logout';

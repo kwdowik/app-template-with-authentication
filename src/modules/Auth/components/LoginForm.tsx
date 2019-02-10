@@ -35,7 +35,8 @@ const LoginFormComponent: React.SFC<ILoginFormProps> =
                         <FormField>
                             <TextInput
                                 placeholder="email"
-                                onChange={({target: {value}}: any) => onEmailChange(value)}
+                                onChange={({target: {value}}: React.ChangeEvent<HTMLInputElement>) =>
+                                    onEmailChange(value)}
                                 required
                             />
                         </FormField>
@@ -44,7 +45,8 @@ const LoginFormComponent: React.SFC<ILoginFormProps> =
                                 placeholder="password"
                                 type="password"
                                 required
-                                onChange={({target: {value}}: any) => onPasswordChange(value)}
+                                onChange={({target: {value}}: React.ChangeEvent<HTMLInputElement>) =>
+                                    onPasswordChange(value)}
                             />
                         </FormField>
                         {isError &&

@@ -13,4 +13,6 @@ const PrivateRoute: React.SFC<IPrivateRouteProps> =
     return <Route {...props} render={render} />;
 };
 
+PrivateRoute.displayName = 'PrivateRoute';
+
 export { PrivateRoute, IPrivateRouteProps };

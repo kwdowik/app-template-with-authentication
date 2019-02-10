@@ -3,11 +3,12 @@ import * as React from 'react';
 import { connect } from 'react-redux';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import { createStructuredSelector } from 'reselect';
+
 import App from '../../containers/App';
 import { Home } from '../../containers/Home';
 import Login from '../../containers/Login';
 import { IAppState } from '../../model';
-import { Logout } from '../../modules/Auth/components/Logout';
+import { Logout } from '../../modules/Auth';
 import { isUserAuthorized } from '../selectors';
 import { PrivateRoute } from './PrivateRoute';
 
