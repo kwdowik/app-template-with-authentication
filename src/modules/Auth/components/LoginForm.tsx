@@ -1,23 +1,10 @@
-import * as React from 'react';
-
-import { Box, Button, Form, FormField, Text, TextInput } from 'grommet';
-import { isEmpty } from 'lodash';
 import { connect } from 'react-redux';
-import { compose, withHandlers } from 'recompose';
+import { compose, withHandlers, withProps } from 'recompose';
 import { bindActionCreators, Dispatch } from 'redux';
-import { ILoginPayload, login } from '..';
+import { login } from '..';
 import { IAppState } from '../../../model';
-import { Loader } from '../../../modules/Common';
-import { getRequest, IRequestState } from '../../Api';
-
-interface ILoginFormProps {
-    onEmailChange: (value: string) => any;
-    onPasswordChange: (value: string) => any;
-    requestState: IRequestState;
-    email: string;
-    password: string;
-    onLogin: (data: ILoginPayload) => any;
-}
+import { FormComponent, IFormProps } from '../../../modules/Common';
+import { getRequest } from '../../Api';
 
 interface ILoginFormOwnProps {
     email: string;
@@ -25,53 +12,7 @@ interface ILoginFormOwnProps {
     onChange: (key: string, value: string) => void;
 }
 
-const LoginFormComponent: React.SFC<ILoginFormProps> =
-    ({ onLogin, onEmailChange, onPasswordChange, email, password, requestState }: ILoginFormProps) => {
-        const { isError, isLoading } =
-            Boolean(requestState) ? requestState : {isLoading: false, isError: false};
-        return (
-            <Box width="medium">
-                    <Form onSubmit={() => onLogin({ email, password, key: 'loginForm' })}>
-                        <FormField>
-                            <TextInput
-                                placeholder="email"
-                                onChange={({target: {value}}: React.ChangeEvent<HTMLInputElement>) =>
-                                    onEmailChange(value)}
-                                required
-                            />
-                        </FormField>
-                        <FormField>
-                            <TextInput
-                                placeholder="password"
-                                type="password"
-                                required
-                                onChange={({target: {value}}: React.ChangeEvent<HTMLInputElement>) =>
-                                    onPasswordChange(value)}
-                            />
-                        </FormField>
-                        {isError &&
-                            <Box>
-                                <Text textAlign="center" color="status-error" size="medium">
-                                    Invalid credentials
-                                </Text>
-                            </Box>
-                        }
-                        {isLoading &&
-                            <Box align="center">
-                                <Loader type="Linear" />
-                            </Box>
-                        }
-                        <Box direction="row" justify="center" margin={{ top: 'medium' }}>
-                            <Button
-                                disabled={isEmpty(email) || isEmpty(password)} type="submit" label="Login"
-                            />
-                        </Box>
-                    </Form>
-                </Box>
-        );
-};
-
-const LoginForm = compose<ILoginFormProps, ILoginFormOwnProps>(
+const LoginForm = compose<IFormProps, ILoginFormOwnProps>(
     connect(
         (state: IAppState, ownProps: ILoginFormOwnProps) => ({
             requestState: getRequest('loginForm')(state),
@@ -79,10 +20,29 @@ const LoginForm = compose<ILoginFormProps, ILoginFormOwnProps>(
         }),
         (dispatch: Dispatch) => bindActionCreators({ onLogin: login }, dispatch),
     ),
-    withHandlers({
-        onEmailChange: ({onChange}: ILoginFormOwnProps) => (value: string) => onChange('email', value),
-        onPasswordChange: ({onChange}: ILoginFormOwnProps) => (value: string) => onChange('password', value),
+    withProps((props: ILoginFormOwnProps) => {
+        const fields = [{
+                name: 'email',
+                required: true,
+                value: props.email,
+            },
+            {
+                name: 'password',
+                required: true,
+                type: 'password',
+                value: props.email,
+            },
+        ];
+        return {
+            fields,
+            submitLabel: 'Login',
+            errorMessage: 'Invalid credentials',
+        };
     }),
-    )(LoginFormComponent);
+    withHandlers({
+        onSubmit: ({onLogin, email, password}: any) => () =>
+            onLogin({email, password, key: 'loginForm'}),
+    }),
+    )(FormComponent);
 
 export { LoginForm };
