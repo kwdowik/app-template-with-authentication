@@ -17,7 +17,7 @@ describe('api should', () => {
         const cb = jest.fn(() => new Promise(() => 'fake'));
         api.fetchData(cb)(args);
 
-        expect(cb).toHaveBeenCalled();
+        expect(cb).toHaveBeenCalledTimes(1);
     });
 
     it('create response object from createHttpResponseObjAsync - ok is false', async () => {

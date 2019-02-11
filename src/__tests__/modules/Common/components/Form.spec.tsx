@@ -74,11 +74,11 @@ describe('FormComponent should',  () => {
 
     it('invoke submit when form has been submited', () => {
         wrapper.find(Form).prop('onSubmit')();
-        expect(props.onSubmit).toHaveBeenCalled();
+        expect(props.onSubmit).toHaveBeenCalledTimes(1);
     });
 
     it('invoke onChange when form has been submited', () => {
         wrapper.find('#input-0').prop('onChange')!({target: { value: 'newTestValue' }} as any);
-        expect(props.onChange).toHaveBeenCalled();
+        expect(props.onChange).toHaveBeenCalledTimes(1);
     });
 });
