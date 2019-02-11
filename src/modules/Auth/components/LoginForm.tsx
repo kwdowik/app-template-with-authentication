@@ -12,6 +12,31 @@ interface ILoginFormOwnProps {
     onChange: (key: string, value: string) => void;
 }
 
+const handleLoginProps = (props: ILoginFormOwnProps) => {
+    const fields = [{
+            name: 'email',
+            required: true,
+            value: props.email,
+        },
+        {
+            name: 'password',
+            required: true,
+            type: 'password',
+            value: props.password,
+        },
+    ];
+    return {
+        fields,
+        submitLabel: 'Login',
+        errorMessage: 'Invalid credentials',
+    };
+};
+
+const handleCreators = ({
+    onSubmit: ({onLogin, email, password}: any) => () =>
+        onLogin({email, password, key: 'loginForm'}),
+});
+
 const LoginForm = compose<IFormProps, ILoginFormOwnProps>(
     connect(
         (state: IAppState, ownProps: ILoginFormOwnProps) => ({
@@ -20,29 +45,8 @@ const LoginForm = compose<IFormProps, ILoginFormOwnProps>(
         }),
         (dispatch: Dispatch) => bindActionCreators({ onLogin: login }, dispatch),
     ),
-    withProps((props: ILoginFormOwnProps) => {
-        const fields = [{
-                name: 'email',
-                required: true,
-                value: props.email,
-            },
-            {
-                name: 'password',
-                required: true,
-                type: 'password',
-                value: props.email,
-            },
-        ];
-        return {
-            fields,
-            submitLabel: 'Login',
-            errorMessage: 'Invalid credentials',
-        };
-    }),
-    withHandlers({
-        onSubmit: ({onLogin, email, password}: any) => () =>
-            onLogin({email, password, key: 'loginForm'}),
-    }),
+    withProps(handleLoginProps),
+    withHandlers(handleCreators),
     )(FormComponent);
 
-export { LoginForm };
+export { LoginForm, ILoginFormOwnProps, handleLoginProps, handleCreators };
