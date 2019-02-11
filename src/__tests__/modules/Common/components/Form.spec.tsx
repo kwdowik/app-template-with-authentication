@@ -1,7 +1,7 @@
 import * as React from 'react';
 
 import { shallow, ShallowWrapper } from 'enzyme';
-import { FormField, Form } from 'grommet';
+import { Form, FormField } from 'grommet';
 import { FormComponent, IField, IFormProps } from '../../../../modules/Common';
 
 describe('FormComponent should',  () => {
