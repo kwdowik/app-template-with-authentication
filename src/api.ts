@@ -26,8 +26,8 @@ const createHttpResponseObjAsync = async (r: Response) => {
 };
 
 interface IExceptionObj {
-    code: number;
-    error: string;
+    code?: number;
+    error?: string;
 }
 
 const createHttpResponseExceptionObj = ({code, error}: IExceptionObj) => ({
