@@ -31,6 +31,7 @@ const FormComponent: React.SFC<IFormProps> =
                         {fields.map((f: IField, index: number) =>
                             <FormField key={index}>
                                 <TextInput
+                                    id={`input-${index}`}
                                     placeholder={f.name}
                                     name={f.name}
                                     onChange={({target: {value}}: React.ChangeEvent<HTMLInputElement>) =>
@@ -42,7 +43,7 @@ const FormComponent: React.SFC<IFormProps> =
                         )}
                         {isError &&
                             <Box>
-                                <Text textAlign="center" color="status-error" size="medium">
+                                <Text id="errorMessage" textAlign="center" color="status-error" size="medium">
                                     {errorMessage}
                                 </Text>
                             </Box>
@@ -54,6 +55,7 @@ const FormComponent: React.SFC<IFormProps> =
                         }
                         <Box direction="row" justify="center" margin={{ top: 'medium' }}>
                             <Button
+                                id="submit"
                                 disabled={fields.filter((f: IField) => f.required && isEmpty(f.value)).length !== 0}
                                 type="submit" label={submitLabel}
                             />
