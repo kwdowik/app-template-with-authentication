@@ -3,10 +3,10 @@ import { IDictionary } from './model';
 
 const fetchData =
     (cb: (...args: any[]) => Promise<Response>) =>
-    async (...args: any[]) =>
-        cb(...args)
-            .then(createHttpResponseObjAsync)
-            .catch(createHttpResponseExceptionObj);
+        async (...args: any[]) =>
+            cb(...args)
+                .then(createHttpResponseObjAsync)
+                .catch(createHttpResponseExceptionObj);
 
 const createHttpResponseObjAsync = async (r: Response) => {
     const headers: IDictionary<string> = {};
