@@ -22,6 +22,7 @@ ShallowWrapper {
         focusIndicator={true}
         hoverIndicator={true}
         href="/logout"
+        icon={<Logout />}
         label="Logout"
         margin={
           Object {
@@ -1684,6 +1685,7 @@ ShallowWrapper {
         "focusIndicator": true,
         "hoverIndicator": true,
         "href": "/logout",
+        "icon": <Logout />,
         "label": "Logout",
         "margin": Object {
           "right": "xsmall",
@@ -3237,6 +3239,7 @@ string",
           focusIndicator={true}
           hoverIndicator={true}
           href="/logout"
+          icon={<Logout />}
           label="Logout"
           margin={
             Object {
@@ -4899,6 +4902,7 @@ string",
           "focusIndicator": true,
           "hoverIndicator": true,
           "href": "/logout",
+          "icon": <Logout />,
           "label": "Logout",
           "margin": Object {
             "right": "xsmall",
