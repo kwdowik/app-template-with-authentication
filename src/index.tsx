@@ -3,11 +3,14 @@ import * as ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
 import './assets/scss/index.scss';
 import { Router } from './routing/components/Router';
+import { register } from './serviceWorker';
 import { store } from './store';
 
 ReactDOM.render(
-    <Provider store={store}>
-        <Router />
-    </Provider>,
-    document.getElementById('root'),
+  <Provider store={store}>
+    <Router />
+  </Provider>,
+  document.getElementById('root'),
 );
+
+register();
