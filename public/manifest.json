@@ -1,0 +1,16 @@
+{
+  "short_name": "Expense",
+  "name": "Expense Counter",
+  "icons": [
+    {
+      "src": "/icon-192.png",
+      "type": "image/png",
+      "sizes": "192x192"
+    }
+  ],
+  "start_url": "/login",
+  "orientation": "portrait",
+  "display": "standalone",
+  "theme_color": "#43ff22",
+  "background_color": "#33cc00"
+}

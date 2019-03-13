@@ -2,8 +2,15 @@ const HtmlWebPackPlugin = require("html-webpack-plugin");
 const webpack = require("webpack");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const WorkboxPlugin = require("workbox-webpack-plugin");
+const CopyPlugin = require("copy-webpack-plugin");
+const CleanWebpackPlugin = require("clean-webpack-plugin");
 
 const path = require("path");
+
+const copyPlugin = new CopyPlugin([
+  { from: __dirname + "/src/assets/images", to: "./" },
+  { from: __dirname + "/public/manifest.json", to: "./" }
+]);
 
 const htmlPlugin = new HtmlWebPackPlugin({
   title: "Progressie Web Application",
@@ -59,16 +66,6 @@ module.exports = (env = {}, argv) => {
               "css-loader",
               "sass-loader"
             ]
-          },
-          {
-            test: /\.(png|jpg|jpeg|gif|svg)$/,
-            use: "url-loader?limit=25000",
-            include: __dirname + "/src/assets/images"
-          },
-          {
-            test: /\.(woff2?|svg|ttf|png)$/,
-            use: "file-loader",
-            exclude: __dirname + "/src/assets/images"
           }
         ]
       },
@@ -76,16 +73,18 @@ module.exports = (env = {}, argv) => {
         extensions: [".tsx", ".ts", ".js"]
       },
       output: {
-        filename: "bundle.js",
+        filename: "[name].bundle.js",
         path: path.resolve(__dirname, "dist")
       },
       plugins: [
         new webpack.DefinePlugin({
           API_URL: JSON.stringify(apiUrl)
         }),
+        new CleanWebpackPlugin(),
         htmlPlugin,
         scssPlugin,
-        workBoxPlugin
+        workBoxPlugin,
+        copyPlugin
       ]
     }
   ];
