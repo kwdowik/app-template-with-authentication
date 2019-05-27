@@ -27,8 +27,7 @@
   },
   "husky": {
     "hooks": {
-      "pre-commit": "yarn test",
-      "pre-push": "yarn test"
+      "pre-commit": "yarn test"
     }
   },
   "browserslist": [
